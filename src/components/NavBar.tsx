@@ -3,15 +3,22 @@ import {
   FormControl,
   FormLabel,
   Stack,
-  Switch
+  Switch,
+  useColorMode
 } from '@chakra-ui/react';
 import Logo from './Logo';
 import SearchBar from './SearchBar';
 
-const NavBar = () => {
+interface Props {
+  onSearch: (value: string) => void;
+}
+
+const NavBar = ({ onSearch }: Props) => {
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <nav>
-      <Container minW='full' padding='3' bg='gray.800'>
+      <Container minW='full' padding='3'>
         <Stack
           margin='auto'
           width='full'
@@ -20,17 +27,20 @@ const NavBar = () => {
           alignItems='center'
           justifyContent='space-between'>
           <Logo />
-          <SearchBar placeholder='Search games...' />
+          <SearchBar onSearch={onSearch} placeholder='Search games...' />
           <FormControl w='auto' display='inline-flex' alignItems='center'>
-            <Switch id='dark-mode' colorScheme='purple' />
+            <Switch
+              id='dark-mode'
+              colorScheme='purple'
+              onChange={toggleColorMode}
+            />
             <FormLabel
               whiteSpace='nowrap'
-              color='white'
               fontWeight='normal'
               htmlFor='dark-mode'
               mb='0'
               ml='3'>
-              Dark Mode
+              {colorMode === 'light' ? 'Dark' : 'Light'} Mode
             </FormLabel>
           </FormControl>
         </Stack>
