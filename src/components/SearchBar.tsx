@@ -3,23 +3,24 @@ import { FaMagnifyingGlass } from 'react-icons/fa6';
 
 interface Props {
   placeholder: string;
+  onSearch: (value: string) => void;
 }
 
-const SearchBar = ({ placeholder }: Props) => {
+const SearchBar = ({ placeholder, onSearch }: Props) => {
   return (
     <InputGroup maxW='2xl'>
-      <InputLeftElement color='whiteAlpha.800' pointerEvents='none'>
+      <InputLeftElement color='purple.700' pointerEvents='none'>
         <FaMagnifyingGlass />
       </InputLeftElement>
       <Input
-        border='none'
-        bg='gray.700'
+        colorScheme='purple'
         focusBorderColor='purple.600'
         fontSize='lg'
         borderRadius='full'
         type='search'
         placeholder={placeholder}
-        color='whiteAlpha.800'
+        color='purple.600'
+        onChange={(e) => onSearch(e.target.value)}
       />
     </InputGroup>
   );
