@@ -5,7 +5,6 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <>
-    theme.config.initialColorMode
     <ColorModeScript initialColorMode={'dark'} />
     <App />
   </>
